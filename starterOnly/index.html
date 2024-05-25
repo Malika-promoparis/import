@@ -57,7 +57,8 @@
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
+              onsubmit="return validate(event);"
+              novalidate
             >
               <div class="formData">
                 <label for="first">Prénom</label><br />
