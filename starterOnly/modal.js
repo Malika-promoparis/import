@@ -121,7 +121,7 @@ function validerDateNaissance(birthdate) {
   if (dateNaissance > dateAujourdhui) {
     baliseDateNaissance.parentElement.setAttribute(
       "data-error",
-      "La date de naissance ne peut pas être dans le futur."
+      "Vous devez déjà être en vie pour vous inscrire."
     );
     baliseDateNaissance.parentElement.setAttribute(
       "data-error-visible",
