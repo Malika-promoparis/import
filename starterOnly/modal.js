@@ -205,19 +205,25 @@ function validerQuantiteDeTournois(quantite) {
   }
 }
 
+/**
+ * Cette fonction prend les boutons radio en paramètre et valide qu'au moins * un est sélectionné
+ * @param {string} radioButtons
+ * @throws {Error}
+ */
 function validateRadioButtons(radioButtons) {
   let isSelected = false;
 
   // On réinitialise les erreurs
   radioButtons[0].parentElement.removeAttribute("data-error");
   radioButtons[0].parentElement.removeAttribute("data-error-visible");
+  // On vérifie si un bouton radio est sélectionné
   for (let i = 0; i < radioButtons.length; i++) {
     if (radioButtons[i].checked) {
       isSelected = true;
       break;
     }
   }
-
+  // On vérifie qu'au moins un bouton radio est sélectionné
   if (!isSelected) {
     radioButtons[0].parentElement.setAttribute(
       "data-error",
@@ -232,6 +238,7 @@ function validateCGU(baliseCheckbox1) {
   // On réinitialise les erreurs
   baliseCheckbox1.parentElement.removeAttribute("data-error");
   baliseCheckbox1.parentElement.removeAttribute("data-error-visible");
+  // On vérifie que la case est cochée
   if (!baliseCheckbox1.checked) {
     baliseCheckbox1.parentElement.setAttribute(
       "data-error",
@@ -256,8 +263,10 @@ function validate(event) {
   // On appelle la fonction pour valider la date de naissance
   validerDateNaissance(dateNaissance);
   let quantite = baliseQuantite.value;
+  // on appelle la fonction pour valider la quantité de tournois
   validerQuantiteDeTournois(quantite);
   let radioButtons = baliseRadio;
+  // On appelle la fonction pour valider les boutons radio
   validateRadioButtons(radioButtons);
   validateCGU(baliseCheckbox1);
 }
