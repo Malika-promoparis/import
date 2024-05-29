@@ -52,12 +52,33 @@ img {
   text-decoration: none;
   font-size: 20px;
   font-family: Roboto, sans-serif;
+  position: relative;
 }
 
 .topnav a:hover {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
+}
+
+/* Ajouté pour le soulignement */
+.topnav a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Ajouté pour l'animation du soulignement */
+.topnav a:hover:before {
+  visibility: visible;
+  width: 100%;
 }
 
 .topnav a.active {
@@ -70,7 +91,7 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1015px) {
   .topnav a {
     display: none;
   }
@@ -78,9 +99,6 @@ img {
     float: right;
     display: block;
   }
-}
-
-@media screen and (max-width: 768px) {
   .topnav.responsive {
     position: relative;
   }
@@ -94,9 +112,6 @@ img {
     display: block;
     text-align: left;
   }
-}
-
-@media screen and (max-width: 540px) {
   .topnav a {
     display: none;
   }
@@ -191,7 +206,12 @@ main {
   padding: 15px 8%;
   margin: 15px auto;
 }
-
+.confirmationText {
+  text-align: center;
+  font-size: 2.25rem;
+  font-weight: normal;
+  margin: 250px 0;
+}
 label {
   font-family: var(--font-default);
   font-size: 17px;
@@ -219,7 +239,7 @@ input {
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
-  text-align: right;
+  text-align: left;
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;
@@ -415,7 +435,7 @@ input[data-error]::after {
   grid-template-columns: repeat(12, 1fr);
   overflow: hidden;
   box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
-  margin-bottom: 10px;
+  margin-bottom: 80px;
 }
 .hero-content {
   padding: 51px 67px;
@@ -499,12 +519,13 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 40px;
     white-space: normal;
   }
   .hero-text {
     width: unset;
-    font-size: 1.5rem;
+    font-size: 13px;
+    margin-top: 17px;
   }
   .hero-img img {
     border-radius: 10px;

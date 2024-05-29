@@ -1,3 +1,4 @@
+// @ts-nocheck
 // DOM Elements
 const x = document.getElementById("myTopnav");
 const modalbg = document.querySelector(".bground");
@@ -11,6 +12,11 @@ const baliseDateNaissance = document.getElementById("birthdate");
 const baliseQuantite = document.getElementById("quantity");
 const baliseRadio = document.querySelectorAll("input[type=radio]");
 const baliseCheckbox1 = document.getElementById("checkbox1");
+const confirmationMessage = document.getElementById("confirmationMessage");
+const closeConfirmationSubmit = document.getElementById(
+  "closeConfirmationSubmit"
+);
+const closeConfirmationSpan = document.getElementById("closeConfirmationSpan");
 
 function editNav() {
   if (x.className === "topnav") {
@@ -36,34 +42,40 @@ function closeModal() {
 }
 
 /**
- * Cette fonction prend un nom et un prenom en paramètre et valide qu'il sont *au bon format
+ * Cette fonction prend un nom et un prenom en paramètre et valide qu'il sont au bon format
  * ici : deux caractères au minimum
  * @param {string} nom
  * @param {string} prenom
  * @throws {Error}
  */
 function validerNomPrenom(nom, prenom) {
+  // On crée une expression régulière pour valider le nom et le prénom
+  let nameRegExp = new RegExp("^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ-]{1,}$");
+  let isValid = true;
   // On vérifie que le nom et le prénom sont au moins de 2 caractères
-  if (nom.length < 2) {
+  if (!nameRegExp.test(nom)) {
     baliseNom.parentElement.setAttribute(
       "data-error",
-      "Le nom est trop court."
+      "Le nom est invalide. Il doit contenir au moins 2 caractères et ne peut contenir que des lettres (minuscules ou majuscules), des lettres accentuées et des tirets."
     );
     baliseNom.parentElement.setAttribute("data-error-visible", "true");
+    isValid = false;
   } else {
     baliseNom.parentElement.removeAttribute("data-error");
     baliseNom.parentElement.removeAttribute("data-error-visible");
   }
-  if (prenom.length < 2) {
+  if (!nameRegExp.test(prenom)) {
     baliseFirst.parentElement.setAttribute(
       "data-error",
-      "Le prénom est trop court."
+      "Le prénom est invalide. Il doit contenir au moins 2 caractères et ne peut contenir que des lettres (minuscules ou majuscules), des lettres accentuées et des tirets."
     );
     baliseFirst.parentElement.setAttribute("data-error-visible", "true");
+    isValid = false;
   } else {
     baliseFirst.parentElement.removeAttribute("data-error");
     baliseFirst.parentElement.removeAttribute("data-error-visible");
   }
+  return isValid;
 }
 
 /**
@@ -77,6 +89,7 @@ function validerEmail(email) {
   let emailRegExp = new RegExp(
     "^([a-z0-9._%+-]+)@([a-z0-9.-]+)\\.([a-z]{2,})$"
   );
+  let isValid = true;
   // On vérifie que l'email est valide
   if (!emailRegExp.test(email)) {
     baliseMail.parentElement.setAttribute(
@@ -84,10 +97,12 @@ function validerEmail(email) {
       "L'email n'est pas valide."
     );
     baliseMail.parentElement.setAttribute("data-error-visible", "true");
+    isValid = false;
   } else {
     baliseMail.parentElement.removeAttribute("data-error");
     baliseMail.parentElement.removeAttribute("data-error-visible");
   }
+  return isValid;
 }
 
 /**
@@ -100,6 +115,7 @@ function validerDateNaissance(birthdate) {
   // On crée deux objets Date pour comparer les dates
   let dateNaissance = new Date(birthdate);
   let dateAujourdhui = new Date();
+  let isValid = true;
 
   // On réinitialise les erreurs
   baliseDateNaissance.parentElement.removeAttribute("data-error");
@@ -115,10 +131,10 @@ function validerDateNaissance(birthdate) {
       "data-error-visible",
       "true"
     );
-    return;
+    isValid = false;
   }
   // On vérifie que la date n'est pas dans le futur
-  if (dateNaissance > dateAujourdhui) {
+  else if (dateNaissance > dateAujourdhui) {
     baliseDateNaissance.parentElement.setAttribute(
       "data-error",
       "Vous devez déjà être en vie pour vous inscrire."
@@ -127,7 +143,7 @@ function validerDateNaissance(birthdate) {
       "data-error-visible",
       "true"
     );
-    return;
+    isValid = false;
   }
   // On vérifie que l'utilisateur a au moins 18 ans
   // On compare les années et les mois
@@ -150,7 +166,7 @@ function validerDateNaissance(birthdate) {
       "data-error-visible",
       "true"
     );
-    return;
+    isValid = false;
   }
   // On vérifie que l'utilisateur n'a pas plus de 120 ans
   if (age > 120) {
@@ -162,8 +178,9 @@ function validerDateNaissance(birthdate) {
       "data-error-visible",
       "true"
     );
-    return;
+    isValid = false;
   }
+  return isValid;
 }
 
 /**
@@ -173,6 +190,7 @@ function validerDateNaissance(birthdate) {
  * @throws {Error}
  */
 function validerQuantiteDeTournois(quantite) {
+  let isValid = true;
   // On réinitialise les erreurs
   baliseQuantite.parentElement.removeAttribute("data-error");
   baliseQuantite.parentElement.removeAttribute("data-error-visible");
@@ -183,26 +201,27 @@ function validerQuantiteDeTournois(quantite) {
       "La quantité est vide ou n'est pas un nombre."
     );
     baliseQuantite.parentElement.setAttribute("data-error-visible", "true");
-    return;
+    isValid = false;
   }
   // On vérifie que la quantité est un entier
-  if (!Number.isInteger(parseFloat(quantite))) {
+  else if (!Number.isInteger(parseFloat(quantite))) {
     baliseQuantite.parentElement.setAttribute(
       "data-error",
       "La quantité n'est pas un entier."
     );
     baliseQuantite.parentElement.setAttribute("data-error-visible", "true");
-    return;
+    isValid = false;
   }
   // On vérifie que la quantité est comprise entre 0 et 99 inclus
-  if (quantite < 0 || quantite > 99) {
+  else if (quantite < 0 || quantite > 99) {
     baliseQuantite.parentElement.setAttribute(
       "data-error",
       "La quantité doit être comprise entre 0 et 99."
     );
     baliseQuantite.parentElement.setAttribute("data-error-visible", "true");
-    return;
+    isValid = false;
   }
+  return isValid;
 }
 
 /**
@@ -212,6 +231,7 @@ function validerQuantiteDeTournois(quantite) {
  */
 function validateRadioButtons(radioButtons) {
   let isSelected = false;
+  let isValid = true;
 
   // On réinitialise les erreurs
   radioButtons[0].parentElement.removeAttribute("data-error");
@@ -230,11 +250,13 @@ function validateRadioButtons(radioButtons) {
       "Veuillez sélectionner au moins une option."
     );
     radioButtons[0].parentElement.setAttribute("data-error-visible", "true");
-    return;
+    isValid = false;
   }
+  return isValid;
 }
 
 function validateCGU(baliseCheckbox1) {
+  let isValid = true;
   // On réinitialise les erreurs
   baliseCheckbox1.parentElement.removeAttribute("data-error");
   baliseCheckbox1.parentElement.removeAttribute("data-error-visible");
@@ -245,28 +267,50 @@ function validateCGU(baliseCheckbox1) {
       "veuillez accepter les conditions d'utilisation"
     );
     baliseCheckbox1.parentElement.setAttribute("data-error-visible", "true");
+    isValid = false;
   }
+  return isValid;
 }
 
+// Fonction de validation du formulaire
 function validate(event) {
   // On empêche le formulaire de s'envoyer
   event.preventDefault();
+
   // On récupère les valeurs des champs
   let nom = baliseNom.value;
   let prenom = baliseFirst.value;
-  // On appelle la fonction pour valider le nom et le prénom
-  validerNomPrenom(nom, prenom);
   let email = baliseMail.value;
-  // On appelle la fonction pour valider l'email
-  validerEmail(email);
   let dateNaissance = baliseDateNaissance.value;
-  // On appelle la fonction pour valider la date de naissance
-  validerDateNaissance(dateNaissance);
   let quantite = baliseQuantite.value;
-  // on appelle la fonction pour valider la quantité de tournois
-  validerQuantiteDeTournois(quantite);
   let radioButtons = baliseRadio;
-  // On appelle la fonction pour valider les boutons radio
-  validateRadioButtons(radioButtons);
-  validateCGU(baliseCheckbox1);
+
+  // On initialise une variable pour suivre les erreurs
+  let hasError = false;
+
+  // On appelle les fonctions de validation
+  if (!validerNomPrenom(nom, prenom)) hasError = true;
+  if (!validerEmail(email)) hasError = true;
+  if (!validerDateNaissance(dateNaissance)) hasError = true;
+  if (!validerQuantiteDeTournois(quantite)) hasError = true;
+  if (!validateRadioButtons(radioButtons)) hasError = true;
+  if (!validateCGU(baliseCheckbox1)) hasError = true;
+
+  // Si pas d'erreur, on masque le formulaire et on affiche le message de confirmation
+  if (!hasError) {
+    modalbg.style.display = "none";
+    confirmationMessage.style.display = "block";
+  }
 }
+
+// Fonction pour fermer la confirmation
+function closeConfirmation() {
+  confirmationMessage.style.display = "none";
+  modalbg.style.display = "none";
+}
+
+// Écouteur pour le span de confirmation
+closeConfirmationSpan.addEventListener("click", closeConfirmation);
+
+// Écouteur pour le bouton de confirmation
+closeConfirmationSubmit.addEventListener("click", closeConfirmation);
