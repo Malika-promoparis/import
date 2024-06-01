@@ -12,11 +12,11 @@ const baliseDateNaissance = document.getElementById("birthdate");
 const baliseQuantite = document.getElementById("quantity");
 const baliseRadio = document.querySelectorAll("input[type=radio]");
 const baliseCheckbox1 = document.getElementById("checkbox1");
-const confirmationMessage = document.getElementById("confirmationMessage");
-const closeConfirmationSubmit = document.getElementById(
-  "closeConfirmationSubmit"
-);
-const closeConfirmationSpan = document.getElementById("closeConfirmationSpan");
+const ModalSuccess = document.getElementById("ModalSuccess");
+const closeSuccessSubmit = document.getElementById("closeSuccessSubmit");
+const closeSuccessSpan = document.getElementById("closeSuccessSpan");
+const form = document.querySelector("form");
+const btnNav = document.querySelector("#btn_hamb");
 
 function editNav() {
   if (x.className === "topnav") {
@@ -25,6 +25,11 @@ function editNav() {
     x.className = "topnav";
   }
 }
+
+// Toggle navbar
+btnNav.addEventListener("click", () =>
+  document.querySelector(".list").classList.toggle("menu_toggle")
+);
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -299,18 +304,29 @@ function validate(event) {
   // Si pas d'erreur, on masque le formulaire et on affiche le message de confirmation
   if (!hasError) {
     modalbg.style.display = "none";
-    confirmationMessage.style.display = "block";
+    ModalSuccess.style.display = "block";
   }
 }
 
+// Fonction pour réinitialiser le formulaire
+function resetForm() {
+  form.reset();
+  // Réinitialiser les messages d'erreur
+  document.querySelectorAll("[data-error]").forEach((element) => {
+    element.removeAttribute("data-error");
+    element.removeAttribute("data-error-visible");
+  });
+}
+
 // Fonction pour fermer la confirmation
-function closeConfirmation() {
-  confirmationMessage.style.display = "none";
+function closeSuccess() {
+  ModalSuccess.style.display = "none";
   modalbg.style.display = "none";
+  resetForm(); // Réinitialiser le formulaire
 }
 
 // Écouteur pour le span de confirmation
-closeConfirmationSpan.addEventListener("click", closeConfirmation);
+closeSuccessSpan.addEventListener("click", closeSuccess);
 
 // Écouteur pour le bouton de confirmation
-closeConfirmationSubmit.addEventListener("click", closeConfirmation);
+closeSuccessSubmit.addEventListener("click", closeSuccess);
