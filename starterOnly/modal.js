@@ -2,16 +2,16 @@
 // DOM Elements
 const x = document.getElementById("myTopnav");
 const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
+const modalBtn = document.querySelectorAll(".btn");
 const formData = document.querySelectorAll(".formData");
 const modalClose = document.querySelector(".close");
-const baliseNom = document.getElementById("last");
-const baliseFirst = document.getElementById("first");
-const baliseMail = document.getElementById("email");
-const baliseDateNaissance = document.getElementById("birthdate");
+const lastNameField = document.getElementById("last");
+const firstNameField = document.getElementById("first");
+const emailField = document.getElementById("email");
+const birthdateField = document.getElementById("birthdate");
 const baliseQuantite = document.getElementById("quantity");
-const baliseRadio = document.querySelectorAll("input[type=radio]");
-const baliseCheckbox1 = document.getElementById("checkbox1");
+const radioButtons = document.querySelectorAll("input[type=radio]");
+const cguCheckbox = document.getElementById("checkbox1");
 const ModalSuccess = document.getElementById("ModalSuccess");
 const closeSuccessSubmit = document.getElementById("closeSuccessSubmit");
 const closeSuccessSpan = document.getElementById("closeSuccessSpan");
@@ -59,26 +59,26 @@ function validerNomPrenom(nom, prenom) {
   let isValid = true;
   // On vérifie que le nom et le prénom sont au moins de 2 caractères
   if (!nameRegExp.test(nom)) {
-    baliseNom.parentElement.setAttribute(
+    lastNameField.parentElement.setAttribute(
       "data-error",
       "Le nom est invalide. Il doit contenir au moins 2 caractères et ne peut contenir que des lettres (minuscules ou majuscules), des lettres accentuées et des tirets."
     );
-    baliseNom.parentElement.setAttribute("data-error-visible", "true");
+    lastNameField.parentElement.setAttribute("data-error-visible", "true");
     isValid = false;
   } else {
-    baliseNom.parentElement.removeAttribute("data-error");
-    baliseNom.parentElement.removeAttribute("data-error-visible");
+    lastNameField.parentElement.removeAttribute("data-error");
+    lastNameField.parentElement.removeAttribute("data-error-visible");
   }
   if (!nameRegExp.test(prenom)) {
-    baliseFirst.parentElement.setAttribute(
+    firstNameField.parentElement.setAttribute(
       "data-error",
       "Le prénom est invalide. Il doit contenir au moins 2 caractères et ne peut contenir que des lettres (minuscules ou majuscules), des lettres accentuées et des tirets."
     );
-    baliseFirst.parentElement.setAttribute("data-error-visible", "true");
+    firstNameField.parentElement.setAttribute("data-error-visible", "true");
     isValid = false;
   } else {
-    baliseFirst.parentElement.removeAttribute("data-error");
-    baliseFirst.parentElement.removeAttribute("data-error-visible");
+    firstNameField.parentElement.removeAttribute("data-error");
+    firstNameField.parentElement.removeAttribute("data-error-visible");
   }
   return isValid;
 }
@@ -97,15 +97,15 @@ function validerEmail(email) {
   let isValid = true;
   // On vérifie que l'email est valide
   if (!emailRegExp.test(email)) {
-    baliseMail.parentElement.setAttribute(
+    emailField.parentElement.setAttribute(
       "data-error",
       "L'email n'est pas valide."
     );
-    baliseMail.parentElement.setAttribute("data-error-visible", "true");
+    emailField.parentElement.setAttribute("data-error-visible", "true");
     isValid = false;
   } else {
-    baliseMail.parentElement.removeAttribute("data-error");
-    baliseMail.parentElement.removeAttribute("data-error-visible");
+    emailField.parentElement.removeAttribute("data-error");
+    emailField.parentElement.removeAttribute("data-error-visible");
   }
   return isValid;
 }
@@ -123,31 +123,25 @@ function validerDateNaissance(birthdate) {
   let isValid = true;
 
   // On réinitialise les erreurs
-  baliseDateNaissance.parentElement.removeAttribute("data-error");
-  baliseDateNaissance.parentElement.removeAttribute("data-error-visible");
+  birthdateField.parentElement.removeAttribute("data-error");
+  birthdateField.parentElement.removeAttribute("data-error-visible");
 
   // On vérifie que la date est valide
   if (isNaN(dateNaissance.getTime())) {
-    baliseDateNaissance.parentElement.setAttribute(
+    birthdateField.parentElement.setAttribute(
       "data-error",
       "La date de naissance n'est pas valide."
     );
-    baliseDateNaissance.parentElement.setAttribute(
-      "data-error-visible",
-      "true"
-    );
+    birthdateField.parentElement.setAttribute("data-error-visible", "true");
     isValid = false;
   }
   // On vérifie que la date n'est pas dans le futur
   else if (dateNaissance > dateAujourdhui) {
-    baliseDateNaissance.parentElement.setAttribute(
+    birthdateField.parentElement.setAttribute(
       "data-error",
       "Vous devez déjà être en vie pour vous inscrire."
     );
-    baliseDateNaissance.parentElement.setAttribute(
-      "data-error-visible",
-      "true"
-    );
+    birthdateField.parentElement.setAttribute("data-error-visible", "true");
     isValid = false;
   }
   // On vérifie que l'utilisateur a au moins 18 ans
@@ -163,26 +157,20 @@ function validerDateNaissance(birthdate) {
   }
   // Si l'utilisateur n'a pas 18 ans, on lève une erreur
   if (age < 18) {
-    baliseDateNaissance.parentElement.setAttribute(
+    birthdateField.parentElement.setAttribute(
       "data-error",
       "Vous devez être majeur pour vous inscrire."
     );
-    baliseDateNaissance.parentElement.setAttribute(
-      "data-error-visible",
-      "true"
-    );
+    birthdateField.parentElement.setAttribute("data-error-visible", "true");
     isValid = false;
   }
   // On vérifie que l'utilisateur n'a pas plus de 120 ans
   if (age > 120) {
-    baliseDateNaissance.parentElement.setAttribute(
+    birthdateField.parentElement.setAttribute(
       "data-error",
       "Vous devez être encore en vie pour vous inscrire."
     );
-    baliseDateNaissance.parentElement.setAttribute(
-      "data-error-visible",
-      "true"
-    );
+    birthdateField.parentElement.setAttribute("data-error-visible", "true");
     isValid = false;
   }
   return isValid;
@@ -260,18 +248,18 @@ function validateRadioButtons(radioButtons) {
   return isValid;
 }
 
-function validateCGU(baliseCheckbox1) {
+function validateCGU(cguCheckbox) {
   let isValid = true;
   // On réinitialise les erreurs
-  baliseCheckbox1.parentElement.removeAttribute("data-error");
-  baliseCheckbox1.parentElement.removeAttribute("data-error-visible");
+  cguCheckbox.parentElement.removeAttribute("data-error");
+  cguCheckbox.parentElement.removeAttribute("data-error-visible");
   // On vérifie que la case est cochée
-  if (!baliseCheckbox1.checked) {
-    baliseCheckbox1.parentElement.setAttribute(
+  if (!cguCheckbox.checked) {
+    cguCheckbox.parentElement.setAttribute(
       "data-error",
       "veuillez accepter les conditions d'utilisation"
     );
-    baliseCheckbox1.parentElement.setAttribute("data-error-visible", "true");
+    cguCheckbox.parentElement.setAttribute("data-error-visible", "true");
     isValid = false;
   }
   return isValid;
@@ -283,12 +271,12 @@ function validate(event) {
   event.preventDefault();
 
   // On récupère les valeurs des champs
-  let nom = baliseNom.value;
-  let prenom = baliseFirst.value;
-  let email = baliseMail.value;
-  let dateNaissance = baliseDateNaissance.value;
+  let nom = lastNameField.value;
+  let prenom = firstNameField.value;
+  let email = emailField.value;
+  let dateNaissance = birthdateField.value;
   let quantite = baliseQuantite.value;
-  let radioButtons = baliseRadio;
+  let radioButtonsSelected = radioButtons;
 
   // On initialise une variable pour suivre les erreurs
   let hasError = false;
@@ -298,8 +286,8 @@ function validate(event) {
   if (!validerEmail(email)) hasError = true;
   if (!validerDateNaissance(dateNaissance)) hasError = true;
   if (!validerQuantiteDeTournois(quantite)) hasError = true;
-  if (!validateRadioButtons(radioButtons)) hasError = true;
-  if (!validateCGU(baliseCheckbox1)) hasError = true;
+  if (!validateRadioButtons(radioButtonsSelected)) hasError = true;
+  if (!validateCGU(cguCheckbox)) hasError = true;
 
   // Si pas d'erreur, on masque le formulaire et on affiche le message de confirmation
   if (!hasError) {
