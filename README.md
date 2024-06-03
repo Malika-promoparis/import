@@ -1,6 +1,6 @@
 # GameOn
 
-<img src="./img/Capture_gameOn.png" alt="Capture d'écran du site"/>
+<img src="./img/Capture_GameOn.png" alt="Capture d'écran du site"/>
 
 <p align="center">
   <img src="./img/modal1.png" alt="screen du formulaire d'inscription" width="45%" />
