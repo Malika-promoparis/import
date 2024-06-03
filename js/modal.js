@@ -9,7 +9,7 @@ const lastNameField = document.getElementById("last");
 const firstNameField = document.getElementById("first");
 const emailField = document.getElementById("email");
 const birthdateField = document.getElementById("birthdate");
-const baliseQuantite = document.getElementById("quantity");
+const quantityField = document.getElementById("quantity");
 const radioButtons = document.querySelectorAll("input[type=radio]");
 const cguCheckbox = document.getElementById("checkbox1");
 const ModalSuccess = document.getElementById("ModalSuccess");
@@ -186,33 +186,33 @@ function validerDateNaissance(birthdate) {
 function validerQuantiteDeTournois(quantite) {
   let isValid = true;
   // On réinitialise les erreurs
-  baliseQuantite.parentElement.removeAttribute("data-error");
-  baliseQuantite.parentElement.removeAttribute("data-error-visible");
+  quantityField.parentElement.removeAttribute("data-error");
+  quantityField.parentElement.removeAttribute("data-error-visible");
   // On vérifie que la quantité n'est pas vide et est un nombre
   if (quantite === "" || isNaN(quantite)) {
-    baliseQuantite.parentElement.setAttribute(
+    quantityField.parentElement.setAttribute(
       "data-error",
       "La quantité est vide ou n'est pas un nombre."
     );
-    baliseQuantite.parentElement.setAttribute("data-error-visible", "true");
+    quantityField.parentElement.setAttribute("data-error-visible", "true");
     isValid = false;
   }
   // On vérifie que la quantité est un entier
   else if (!Number.isInteger(parseFloat(quantite))) {
-    baliseQuantite.parentElement.setAttribute(
+    quantityField.parentElement.setAttribute(
       "data-error",
       "La quantité n'est pas un entier."
     );
-    baliseQuantite.parentElement.setAttribute("data-error-visible", "true");
+    quantityField.parentElement.setAttribute("data-error-visible", "true");
     isValid = false;
   }
   // On vérifie que la quantité est comprise entre 0 et 99 inclus
   else if (quantite < 0 || quantite > 99) {
-    baliseQuantite.parentElement.setAttribute(
+    quantityField.parentElement.setAttribute(
       "data-error",
       "La quantité doit être comprise entre 0 et 99."
     );
-    baliseQuantite.parentElement.setAttribute("data-error-visible", "true");
+    quantityField.parentElement.setAttribute("data-error-visible", "true");
     isValid = false;
   }
   return isValid;
@@ -276,7 +276,7 @@ function validate(event) {
   let prenom = firstNameField.value;
   let email = emailField.value;
   let dateNaissance = birthdateField.value;
-  let quantite = baliseQuantite.value;
+  let quantite = quantityField.value;
   let radioButtonsSelected = radioButtons;
 
   // On initialise une variable pour suivre les erreurs
