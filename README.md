@@ -1,6 +1,10 @@
 # GameOn
 
+<<<<<<< HEAD
 ![Capture d'écran du site](./img/Capture_GameOn.png)
+=======
+<img src="./img/Capture_GameOn.png" alt="Capture d'écran du site"/>
+>>>>>>> 80312da1a38abd61fc889f4081f020f1b53fc457
 
 <p align="center">
   <img src="./img/modal1.png" alt="screen du formulaire d'inscription" width="45%" />
