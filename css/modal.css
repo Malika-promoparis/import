@@ -1,6 +1,5 @@
 :root {
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
-  --font-slab: var(--font-default);
   --modal-duration: 0.8s;
   --red-highlight: #fe142f;
   --light: #fff;
@@ -52,7 +51,7 @@ img {
   background-color: var(--light);
 }
 .header-logo img {
-  width: clamp(6.438rem, 15vw, 17.313rem);
+  width: clamp(6.438rem, 20vw, 17.313rem);
 }
 
 .list {
@@ -134,7 +133,7 @@ main {
 .footer {
   margin: 20px;
   padding: 10px;
-  font-family: var(--font-slab);
+  font-family: var(--font-default);
 }
 
 /* Modal form */
@@ -375,11 +374,13 @@ input[data-error]::after {
   z-index: 1;
 }
 .hero-headline {
-  font-size: clamp(2.25rem, 6.5vw, 9.1rem);
+  font-family: var(--font-default);
+  font-size: clamp(2.25rem, 6.5vw, 6rem);
   font-weight: normal;
   white-space: nowrap;
 }
 .hero-text {
+  font-family: var(--font-default);
   font-size: clamp(0.813rem, 1.5vw, 1.5rem);
   width: 146%;
   font-weight: normal;
@@ -546,7 +547,7 @@ footer {
   }
   .hero-text {
     margin-bottom: 20px;
-    font-size: 0.813rem;
+    font-size: 1rem;
   }
 }
 @keyframes modalopen {
