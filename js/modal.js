@@ -135,45 +135,42 @@ function validerDateNaissance(birthdate) {
     );
     birthdateField.parentElement.setAttribute("data-error-visible", "true");
     isValid = false;
-  }
-  // On vérifie que la date n'est pas dans le futur
-  else if (dateNaissance > dateAujourdhui) {
+  } else if (dateNaissance > dateAujourdhui) {
+    // On vérifie que la date n'est pas dans le futur
     birthdateField.parentElement.setAttribute(
       "data-error",
       "Vous devez déjà être en vie pour vous inscrire."
     );
     birthdateField.parentElement.setAttribute("data-error-visible", "true");
     isValid = false;
+  } else {
+    // On vérifie que l'utilisateur a au moins 18 ans
+    let age = dateAujourdhui.getFullYear() - dateNaissance.getFullYear();
+    let m = dateAujourdhui.getMonth() - dateNaissance.getMonth();
+    if (
+      m < 0 ||
+      (m === 0 && dateAujourdhui.getDate() < dateNaissance.getDate())
+    ) {
+      age--;
+    }
+    if (age < 18) {
+      birthdateField.parentElement.setAttribute(
+        "data-error",
+        "Vous devez être majeur pour vous inscrire."
+      );
+      birthdateField.parentElement.setAttribute("data-error-visible", "true");
+      isValid = false;
+    } else if (age > 120) {
+      // On vérifie que l'utilisateur n'a pas plus de 120 ans
+      birthdateField.parentElement.setAttribute(
+        "data-error",
+        "Vous devez être encore en vie pour vous inscrire."
+      );
+      birthdateField.parentElement.setAttribute("data-error-visible", "true");
+      isValid = false;
+    }
   }
-  // On vérifie que l'utilisateur a au moins 18 ans
-  // On compare les années et les mois
-  let age = dateAujourdhui.getFullYear() - dateNaissance.getFullYear();
-  let m = dateAujourdhui.getMonth() - dateNaissance.getMonth();
-  // Si l'utilisateur n'a pas encore eu son anniversaire ce mois-ci, on retire 1 an
-  if (
-    m < 0 ||
-    (m === 0 && dateAujourdhui.getDate() < dateNaissance.getDate())
-  ) {
-    age--;
-  }
-  // Si l'utilisateur n'a pas 18 ans, on lève une erreur
-  if (age < 18) {
-    birthdateField.parentElement.setAttribute(
-      "data-error",
-      "Vous devez être majeur pour vous inscrire."
-    );
-    birthdateField.parentElement.setAttribute("data-error-visible", "true");
-    isValid = false;
-  }
-  // On vérifie que l'utilisateur n'a pas plus de 120 ans
-  if (age > 120) {
-    birthdateField.parentElement.setAttribute(
-      "data-error",
-      "Vous devez être encore en vie pour vous inscrire."
-    );
-    birthdateField.parentElement.setAttribute("data-error-visible", "true");
-    isValid = false;
-  }
+
   return isValid;
 }
 
