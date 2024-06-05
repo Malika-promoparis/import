@@ -1,6 +1,5 @@
 # GameOn
 
-=======
 <img src="./img/Capture_GameOn.png" alt="Capture d'écran du site"/>
 
 <p align="center">
