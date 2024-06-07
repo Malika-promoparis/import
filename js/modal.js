@@ -50,36 +50,36 @@ function closeModal() {
 /**
  * Cette fonction prend un nom et un prenom en paramètre et valide qu'il sont au bon format
  * ici : deux caractères au minimum
- * @param {string} nom
- * @param {string} prenom
+ * @param {string} FirstName
+ * @param {string} LastName
  * @throws {Error}
  */
-function validerNomPrenom(nom, prenom) {
+function validateFirstNameLastName(FirstName, LastName) {
   // On crée une expression régulière pour valider le nom et le prénom
   let nameRegExp = new RegExp("^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ-]{1,}$");
   let isValid = true;
   // On vérifie que le nom et le prénom sont au moins de 2 caractères
-  if (!nameRegExp.test(nom)) {
-    lastNameField.parentElement.setAttribute(
-      "data-error",
-      "Le nom est invalide. Il doit contenir au moins 2 caractères et ne peut contenir que des lettres (minuscules ou majuscules), des lettres accentuées et des tirets."
-    );
-    lastNameField.parentElement.setAttribute("data-error-visible", "true");
-    isValid = false;
-  } else {
-    lastNameField.parentElement.removeAttribute("data-error");
-    lastNameField.parentElement.removeAttribute("data-error-visible");
-  }
-  if (!nameRegExp.test(prenom)) {
+  if (!nameRegExp.test(FirstName)) {
     firstNameField.parentElement.setAttribute(
       "data-error",
-      "Le prénom est invalide. Il doit contenir au moins 2 caractères et ne peut contenir que des lettres (minuscules ou majuscules), des lettres accentuées et des tirets."
+      "Le nom est invalide. Il doit contenir au moins 2 caractères et ne peut contenir que des lettres (minuscules ou majuscules), des lettres accentuées et des tirets."
     );
     firstNameField.parentElement.setAttribute("data-error-visible", "true");
     isValid = false;
   } else {
     firstNameField.parentElement.removeAttribute("data-error");
     firstNameField.parentElement.removeAttribute("data-error-visible");
+  }
+  if (!nameRegExp.test(LastName)) {
+    lastNameField.parentElement.setAttribute(
+      "data-error",
+      "Le prénom est invalide. Il doit contenir au moins 2 caractères et ne peut contenir que des lettres (minuscules ou majuscules), des lettres accentuées et des tirets."
+    );
+    lastNameField.parentElement.setAttribute("data-error-visible", "true");
+    isValid = false;
+  } else {
+    lastNameField.parentElement.removeAttribute("data-error");
+    lastNameField.parentElement.removeAttribute("data-error-visible");
   }
   return isValid;
 }
@@ -90,7 +90,7 @@ function validerNomPrenom(nom, prenom) {
  * @param {string} email
  * @throws {Error}
  */
-function validerEmail(email) {
+function validateEmail(email) {
   // On crée une expression régulière pour valider l'email
   let emailRegExp = new RegExp(
     "^([a-z0-9._%+-]+)@([a-z0-9.-]+)\\.([a-z]{2,})$"
@@ -117,7 +117,7 @@ function validerEmail(email) {
  * @param {string} birthdate
  * @throws {Error}
  */
-function validerDateNaissance(birthdate) {
+function validateBirthdate(birthdate) {
   // On crée deux objets Date pour comparer les dates
   let dateNaissance = new Date(birthdate);
   let dateAujourdhui = new Date();
@@ -177,16 +177,16 @@ function validerDateNaissance(birthdate) {
 /**
  * Cette fonction prend une quantité en paramètre et valide qu'elle est au bon format
  * ici : un nombre entier
- * @param {number} quantite
+ * @param {number} quantity
  * @throws {Error}
  */
-function validerQuantiteDeTournois(quantite) {
+function validateTournamentQuantity(quantity) {
   let isValid = true;
   // On réinitialise les erreurs
   quantityField.parentElement.removeAttribute("data-error");
   quantityField.parentElement.removeAttribute("data-error-visible");
   // On vérifie que la quantité n'est pas vide et est un nombre
-  if (quantite === "" || isNaN(quantite)) {
+  if (quantity === "" || isNaN(quantity)) {
     quantityField.parentElement.setAttribute(
       "data-error",
       "La quantité est vide ou n'est pas un nombre."
@@ -195,7 +195,7 @@ function validerQuantiteDeTournois(quantite) {
     isValid = false;
   }
   // On vérifie que la quantité est un entier
-  else if (!Number.isInteger(parseFloat(quantite))) {
+  else if (!Number.isInteger(parseFloat(quantity))) {
     quantityField.parentElement.setAttribute(
       "data-error",
       "La quantité n'est pas un entier."
@@ -204,7 +204,7 @@ function validerQuantiteDeTournois(quantite) {
     isValid = false;
   }
   // On vérifie que la quantité est comprise entre 0 et 99 inclus
-  else if (quantite < 0 || quantite > 99) {
+  else if (quantity < 0 || quantity > 99) {
     quantityField.parentElement.setAttribute(
       "data-error",
       "La quantité doit être comprise entre 0 et 99."
@@ -269,21 +269,21 @@ function validate(event) {
   event.preventDefault();
 
   // On récupère les valeurs des champs
-  let nom = lastNameField.value;
-  let prenom = firstNameField.value;
+  let FirstName = firstNameField.value;
+  let LastName = lastNameField.value;
   let email = emailField.value;
   let dateNaissance = birthdateField.value;
-  let quantite = quantityField.value;
+  let quantity = quantityField.value;
   let radioButtonsSelected = radioButtons;
 
   // On initialise une variable pour suivre les erreurs
   let hasError = false;
 
   // On appelle les fonctions de validation
-  if (!validerNomPrenom(nom, prenom)) hasError = true;
-  if (!validerEmail(email)) hasError = true;
-  if (!validerDateNaissance(dateNaissance)) hasError = true;
-  if (!validerQuantiteDeTournois(quantite)) hasError = true;
+  if (!validateFirstNameLastName(FirstName, LastName)) hasError = true;
+  if (!validateEmail(email)) hasError = true;
+  if (!validateBirthdate(dateNaissance)) hasError = true;
+  if (!validateTournamentQuantity(quantity)) hasError = true;
   if (!validateRadioButtons(radioButtonsSelected)) hasError = true;
   if (!validateCGU(cguCheckbox)) hasError = true;
 
