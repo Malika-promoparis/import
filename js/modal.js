@@ -313,6 +313,5 @@ function closeSuccess() {
 
 // Écouteur pour le span de confirmation
 closeSuccessSpan.addEventListener("click", closeSuccess);
-
 // Écouteur pour le bouton de confirmation
 closeSuccessSubmit.addEventListener("click", closeSuccess);

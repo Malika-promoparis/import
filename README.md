@@ -75,4 +75,4 @@ Autorisées : HTML / CSS / JavaScript
 - [Maquettes mobile et desktop du site GameOn](https://www.figma.com/design/B7NKBDvSI18uoMLJgpnh48/UI-Design-GameOn-FR?node-id=106-630&t=MaM8NCylgRbPovsL-0)
 - [Issues à réalisées](https://github.com/OpenClassrooms-Student-Center/GameOn-website-FR/issues)
 - [Déploiement](https://gregmelo.github.io/GameOn-website-FR/)
-- [Présentation] En Cours de réalisation
+- [Présentation](https://prezi.com/view/UvyxFYEtULAMF9GQLFSP/)
