@@ -39,7 +39,11 @@ modalClose.addEventListener("click", closeModal);
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
-  document.querySelector(".list").classList.toggle("menu_toggle");
+  // Vérifie si le menu est ouvert (a la classe menu_toggle)
+  if (document.querySelector(".list").classList.contains("menu_toggle")) {
+    // Ferme le menu si ouvert
+    document.querySelector(".list").classList.remove("menu_toggle");
+  }
 }
 
 //Fonction qui permet de fermer la modale
