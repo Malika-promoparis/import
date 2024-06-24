@@ -3,6 +3,7 @@
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,7 +15,6 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -28,6 +28,7 @@ p {
 
 img {
   padding-right: 1rem;
+  object-fit: cover;
 }
 
 .topnav {
@@ -35,15 +36,15 @@ img {
   margin: 3.5%;
 }
 .header-logo {
-    float: left;
+  float: left;
 }
 .main-navbar {
-    float: right;
+  float: right;
 }
 .topnav a {
   float: left;
   display: block;
-  color: #000000;
+  color: rgba(255, 0, 27, 1);
   text-align: center;
   padding: 12px 12px;
   margin: 5px;
@@ -68,16 +69,33 @@ img {
   display: none;
 }
 
+.form-error {
+  display: none;
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(255, 78, 96, 1);
+}
+
 @media screen and (max-width: 768px) {
-  .topnav a {display: none;}
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
   }
+
+  .bground {
+    height: 93vw;
+    position: absolute;
+    bottom: 0;
+  }
 }
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -90,16 +108,16 @@ img {
   }
 }
 
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
+@media screen and (max-width: 540px) {
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
     margin-top: -15px;
   }
-} 
+}
 
 main {
   font-size: 130%;
@@ -111,8 +129,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -205,6 +221,7 @@ input {
   padding: 8px;
   width: 100%;
   border-radius: 8px;
+  border: solid 3px;
   font-size: 20px;
   height: 48px;
 }
@@ -227,11 +244,11 @@ input {
   border: 2px solid #e54858;
 }
 /* 
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
+  input[data-error]::after {
+      content: attr(data-error);
+      font-size: 0.4em;
+      color: red;
+  } */
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -526,4 +543,3 @@ footer {
     opacity: 1;
   }
 }
-
