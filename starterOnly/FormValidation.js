@@ -24,7 +24,7 @@ function validate() {
     if (!emailPattern.test(email.value)) {
       valid = false;
     }
-  
+    
     // Vérifier le champ de la quantité (une valeur numérique est saisie)
     if (isNaN(quantity.value) || quantity.value.trim() === '') {
       valid = false;
