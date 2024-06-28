@@ -14,7 +14,6 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -399,6 +398,33 @@ input[data-error]::after {
 .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+/* message erreur */
+.error{
+  color: red;
+  border: 1px solid red;
+  box-shadow: 0 0 10px red;
+}
+.error-message{
+  color: red;
+  font-size: medium;
+  margin: 15px;
+}
+
+/* message succes */
+.success-message{
+  height: 74vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  text-align: center;
+}
+.success-message button {
+  position: absolute;
+  bottom: 25px;
+}
+
 /* custom select end */
 .text-label {
   font-weight: normal;
@@ -478,10 +504,11 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   .hero-section {
     display: block;
     box-shadow: unset;
+    min-height: auto;
   }
   .hero-content {
     background: #fff;
@@ -526,4 +553,14 @@ footer {
     opacity: 1;
   }
 }
+
+@keyframes modalclose {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+} 
+
 
