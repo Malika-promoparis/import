@@ -115,5 +115,23 @@ function validate() {
     terms.classList.remove('error');
   }
 
+  if (valid) {
+    // Affichage du message de confirmation
+    const confirmationMessage = document.createElement('p');
+    confirmationMessage.textContent = 'Votre inscription est confirmée !';
+    confirmationMessage.classList.add('confirmation-message');
+
+    const modalBody = document.querySelector('.modal-body');
+    modalBody.appendChild(confirmationMessage);
+
+    // Fermeture de la modal après 2 secondes
+    setTimeout(() => {
+      closeModal();
+    }, 2000);
+
+    return false;
+  }
+
   return valid;
 }
+

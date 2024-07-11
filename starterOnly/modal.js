@@ -27,4 +27,6 @@ closeBtn.addEventListener("click", closeModal);
 // Fonction pour fermer la modale
 function closeModal() {
   modalbg.style.display = "none";
+  const confirmationMessage = document.getElementById('confirmationMessage');
+  //confirmationMessage.style.display = 'none'; // Cacher le message de confirmation
 }
