@@ -344,11 +344,8 @@ input[data-error]::after {
   border: 1px solid red;
 }
 
-.confirmation-message {
-  font-size: 18px;
-  font-weight: bold;
-  color: green;
-  margin-top: 10px;
+#confirmation-message {
+  display: none;
 }
 
 /* custom select styles */
