@@ -1,4 +1,50 @@
+<<<<<<< Updated upstream
 function validate() {
+=======
+document.addEventListener('DOMContentLoaded', (event) => {
+  const form = document.querySelector('form[name="reserve"]');
+  form.addEventListener('submit', validate);
+});
+
+function resetFormErrors() {
+  const errorElements = document.querySelectorAll('.error-message');
+  const inputElements = document.querySelectorAll('.error');
+
+  errorElements.forEach((element) => {
+    element.textContent = '';  // Effacer le message d'erreur
+  });
+
+  inputElements.forEach((element) => {
+    element.classList.remove('error');  // Retirer la classe d'erreur
+  });
+}
+
+function validateFirstName() {
+  const firstName = document.getElementById('first');
+  const firstError = document.getElementById('first-error')
+  if (firstName.value.trim().length < 2) {
+    firstError.textContent = 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.';
+    firstName.classList.add('error');
+    return false
+  }
+  return true
+}
+
+function validateLastName() {
+  const lastName = document.getElementById('last');
+  const lastError = document.getElementById('last-error')
+  if (lastName.value.trim().length < 2) {
+    lastError.textContent = 'Veuillez entrer 2 caractères ou plus pour le champ du nom.';
+    lastName.classList.add('error');
+    return false
+  }
+  return true
+}
+
+function validate(event) {
+  event.preventDefault();  // Empêcher la soumission du formulaire
+
+>>>>>>> Stashed changes
   // Récupérer les éléments du formulaire
   const firstName = document.getElementById('first');
   const lastName = document.getElementById('last');
@@ -36,18 +82,20 @@ function validate() {
   let valid = true;
 
   // Vérifier le champ Prénom (minimum 2 caractères / n'est pas vide)
-  if (firstName.value.trim().length < 2) {
+  /*if (firstName.value.trim().length < 2) {
     firstError.textContent = 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.';
     firstName.classList.add('error');
     valid = false;
-  }
+  }*/
+ valid=validateFirstName() && validateLastName()
 
   // Vérifier le champ Nom (minimum 2 caractères / n'est pas vide)
-  if (lastName.value.trim().length < 2) {
+  /*if (lastName.value.trim().length < 2) {
     lastError.textContent = 'Veuillez entrer 2 caractères ou plus pour le champ du nom.';
     firstName.classList.add('error');
     valid = false;
-  }
+  }*/
+
 
   // Vérifier l'adresse électronique (doit être valide)
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -117,3 +165,23 @@ function validate() {
 
   return valid;
 }
+<<<<<<< Updated upstream
+=======
+
+// Fermer la modale et réinitialiser le formulaire et le message de confirmation
+document.querySelector('.close').addEventListener('click', function() {
+  document.querySelector('.bground').style.display = 'none';
+  const form = document.querySelector('form[name="reserve"]');
+  form.style.display = 'block';
+  document.getElementById('confirmation-message').style.display = 'none';
+  
+});
+
+document.querySelector('.closeMessage').addEventListener('click', function() {
+  document.querySelector('.bground').style.display = 'none';
+  const form = document.querySelector('form[name="reserve"]');
+  form.style.display = 'block';
+  document.getElementById('confirmation-message').style.display = 'none';
+ 
+});
+>>>>>>> Stashed changes

@@ -68,15 +68,16 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 822px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
     display: block;
+    color: #FF001B;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 822px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
     position: absolute;
@@ -336,14 +337,31 @@ input[data-error]::after {
 
 /*Messages d'erreur */
 .error-message {
-  color: red;
-  font-size: 12px;
+  color: #FF4E60;
+  font-size: 10px;
+  font-weight: 400;
 }
 
 .error {
-  border: 1px solid red;
+  border: 2px solid #FF4E60;
 }
 
+<<<<<<< Updated upstream
+=======
+#confirmation-message{
+  align-content: center;
+  width: 100%;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 400;
+  height: 700px;
+  display: none;
+}
+
+.btn-submit closeMessage{
+  margin-top: 330px;
+}
+>>>>>>> Stashed changes
 /* custom select styles */
 .custom-select {
   position: relative;
@@ -416,7 +434,7 @@ input[data-error]::after {
   font-size: 16px;
 }
 .hero-section {
-  min-height: 93vh;
+  height: 657px;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -447,8 +465,8 @@ input[data-error]::after {
   z-index: 1;
 }
 .hero-headline {
-  font-size: 6rem;
-  font-weight: normal;
+  font-size: 4.5rem;
+  font-weight: 500;
   white-space: nowrap;
 }
 .hero-text {
@@ -493,6 +511,7 @@ footer {
   .hero-section {
     display: block;
     box-shadow: unset;
+    height: auto;
   }
   .hero-content {
     background: #fff;
@@ -516,6 +535,7 @@ footer {
   .hero-img img {
     border-radius: 10px;
     margin-top: 40px;
+    height: 329px;
   }
   .hero-section > .btn-signup {
     display: block;
@@ -538,3 +558,20 @@ footer {
   }
 }
 
+/* Corrections responsive */
+@media screen and (min-width: 823px) and (max-width: 1110px) {
+  .topnav {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; 
+  }
+
+  .header-logo, 
+  .main-navbar {
+    float: none; 
+    display: inline-block;
+    text-align: center; 
+    margin: 0 10px; 
+  }
+}

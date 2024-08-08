@@ -18,6 +18,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
 function launchModal() {
+  resetFormErrors(); // Réinitialiser les erreurs lorsque la modale s'ouvre
   modalbg.style.display = "block";
 }
 
