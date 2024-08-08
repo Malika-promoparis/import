@@ -344,6 +344,10 @@ input[data-error]::after {
   border: 1px solid red;
 }
 
+#confirmation-message {
+  display: none;
+}
+
 /* custom select styles */
 .custom-select {
   position: relative;
