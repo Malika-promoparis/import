@@ -346,8 +346,6 @@ input[data-error]::after {
   border: 2px solid #FF4E60;
 }
 
-<<<<<<< Updated upstream
-=======
 #confirmation-message{
   align-content: center;
   width: 100%;
@@ -361,7 +359,6 @@ input[data-error]::after {
 .btn-submit closeMessage{
   margin-top: 330px;
 }
->>>>>>> Stashed changes
 /* custom select styles */
 .custom-select {
   position: relative;

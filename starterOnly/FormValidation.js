@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-function validate() {
-=======
 document.addEventListener('DOMContentLoaded', (event) => {
   const form = document.querySelector('form[name="reserve"]');
   form.addEventListener('submit', validate);
@@ -44,7 +41,6 @@ function validateLastName() {
 function validate(event) {
   event.preventDefault();  // Empêcher la soumission du formulaire
 
->>>>>>> Stashed changes
   // Récupérer les éléments du formulaire
   const firstName = document.getElementById('first');
   const lastName = document.getElementById('last');
@@ -165,8 +161,6 @@ function validate(event) {
 
   return valid;
 }
-<<<<<<< Updated upstream
-=======
 
 // Fermer la modale et réinitialiser le formulaire et le message de confirmation
 document.querySelector('.close').addEventListener('click', function() {
@@ -184,4 +178,3 @@ document.querySelector('.closeMessage').addEventListener('click', function() {
   document.getElementById('confirmation-message').style.display = 'none';
  
 });
->>>>>>> Stashed changes
