@@ -3,6 +3,41 @@ document.addEventListener('DOMContentLoaded', (event) => {
   form.addEventListener('submit', validate);
 });
 
+function resetFormErrors() {
+  const errorElements = document.querySelectorAll('.error-message');
+  const inputElements = document.querySelectorAll('.error');
+
+  errorElements.forEach((element) => {
+    element.textContent = '';  // Effacer le message d'erreur
+  });
+
+  inputElements.forEach((element) => {
+    element.classList.remove('error');  // Retirer la classe d'erreur
+  });
+}
+
+function validateFirstName() {
+  const firstName = document.getElementById('first');
+  const firstError = document.getElementById('first-error')
+  if (firstName.value.trim().length < 2) {
+    firstError.textContent = 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.';
+    firstName.classList.add('error');
+    return false
+  }
+  return true
+}
+
+function validateLastName() {
+  const lastName = document.getElementById('last');
+  const lastError = document.getElementById('last-error')
+  if (lastName.value.trim().length < 2) {
+    lastError.textContent = 'Veuillez entrer 2 caractères ou plus pour le champ du nom.';
+    lastName.classList.add('error');
+    return false
+  }
+  return true
+}
+
 function validate(event) {
   event.preventDefault();  // Empêcher la soumission du formulaire
 
@@ -43,18 +78,20 @@ function validate(event) {
   let valid = true;
 
   // Vérifier le champ Prénom (minimum 2 caractères / n'est pas vide)
-  if (firstName.value.trim().length < 2) {
+  /*if (firstName.value.trim().length < 2) {
     firstError.textContent = 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.';
     firstName.classList.add('error');
     valid = false;
-  }
+  }*/
+ valid=validateFirstName() && validateLastName()
 
   // Vérifier le champ Nom (minimum 2 caractères / n'est pas vide)
-  if (lastName.value.trim().length < 2) {
+  /*if (lastName.value.trim().length < 2) {
     lastError.textContent = 'Veuillez entrer 2 caractères ou plus pour le champ du nom.';
     lastName.classList.add('error');
     valid = false;
-  }
+  }*/
+
 
   // Vérifier le champ Email (format email)
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -117,6 +154,9 @@ document.querySelector('.close').addEventListener('click', function() {
   const form = document.querySelector('form[name="reserve"]');
   form.style.display = 'block';
   document.getElementById('confirmation-message').style.display = 'none';
+
+  
+
   form.reset(); // Réinitialiser le formulaire
 });
 
@@ -125,5 +165,9 @@ document.querySelector('.closeMessage').addEventListener('click', function() {
   const form = document.querySelector('form[name="reserve"]');
   form.style.display = 'block';
   document.getElementById('confirmation-message').style.display = 'none';
+
+ 
+
   form.reset(); // Réinitialiser le formulaire
+
 });
