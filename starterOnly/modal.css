@@ -359,6 +359,12 @@ input[data-error]::after {
 .btn-submit closeMessage{
   margin-top: 330px;
 }
+
+#confirmation-message {
+  display: none;
+}
+
+
 /* custom select styles */
 .custom-select {
   position: relative;

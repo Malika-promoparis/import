@@ -68,7 +68,7 @@ function validate(event) {
   locationError.textContent = '';
   termsError.textContent = '';
 
-// Réinitialiser les bordures des champs
+  // Réinitialiser les bordures des champs
   firstName.classList.remove('error');
   lastName.classList.remove('error');
   email.classList.remove('error');
@@ -88,36 +88,36 @@ function validate(event) {
   // Vérifier le champ Nom (minimum 2 caractères / n'est pas vide)
   /*if (lastName.value.trim().length < 2) {
     lastError.textContent = 'Veuillez entrer 2 caractères ou plus pour le champ du nom.';
-    firstName.classList.add('error');
+    lastName.classList.add('error');
     valid = false;
   }*/
 
 
-  // Vérifier l'adresse électronique (doit être valide)
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailPattern.test(email.value)) {
-    emailError.textContent = 'Veuillez entrer une adresse électronique valide.';
-    firstName.classList.add('error');
+  // Vérifier le champ Email (format email)
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailPattern.test(email.value.trim())) {
+    emailError.textContent = 'Veuillez entrer une adresse email valide.';
+    email.classList.add('error');
     valid = false;
   }
 
-  // Vérifier le champ de la date de naissance (n'est pas vide)
-  if (birthdate.value.trim() === '') {
+  // Vérifier le champ Date de naissance (n'est pas vide)
+  if (!birthdate.value.trim()) {
     birthdateError.textContent = 'Vous devez entrer votre date de naissance.';
-    firstName.classList.add('error');
+    birthdate.classList.add('error');
     valid = false;
   }
 
-  // Vérifier le champ de la quantité (une valeur numérique est saisie)
-  if (isNaN(quantity.value) || quantity.value.trim() === '') {
-    quantityError.textContent = 'Veuillez entrer une valeur numérique pour le nombre de tournois.';
-    firstName.classList.add('error');
+  // Vérifier le champ Quantité (n'est pas vide et est un nombre positif)
+  if (!quantity.value.trim() || quantity.value < 0) {
+    quantityError.textContent = 'Veuillez entrer un nombre valide.';
+    quantity.classList.add('error');
     valid = false;
   }
 
-  // Vérifier si un bouton radio est sélectionné
+  // Vérifier le champ Location (au moins un bouton radio sélectionné)
   let locationSelected = false;
-  for (const location of locations) {
+  for (let location of locations) {
     if (location.checked) {
       locationSelected = true;
       break;
@@ -128,35 +128,21 @@ function validate(event) {
     valid = false;
   }
 
-  // Vérifier si les conditions générales sont cochées
+  // Vérifier les conditions générales (checkbox1 doit être coché)
   if (!terms.checked) {
     termsError.textContent = 'Vous devez vérifier que vous acceptez les termes et conditions.';
     valid = false;
   }
 
-  // Retirer la classe 'error' des champs valides
-  if (firstName.value.trim().length >= 2) {
-    firstName.classList.remove('error');
-  }
-  if (lastName.value.trim().length >= 2) {
-    lastName.classList.remove('error');
-  }
-  if (emailPattern.test(email.value)) {
-    email.classList.remove('error');
-  }
-  if (birthdate.value.trim() !== '') {
-    birthdate.classList.remove('error');
-  }
-  if (!isNaN(quantity.value) && quantity.value.trim() !== '') {
-    quantity.classList.remove('error');
-  }
-  if (locationSelected) {
-    for (const location of locations) {
-      location.classList.remove('error');
-    }
-  }
-  if (terms.checked) {
-    terms.classList.remove('error');
+  if (valid) {
+    // Masquer le formulaire et afficher le message de confirmation
+    const form = event.target;
+    const confirmationMessage = document.getElementById('confirmation-message');
+    form.style.display = 'none';
+    confirmationMessage.style.display = 'block';
+
+    // Effacer les valeurs du formulaire
+    form.reset();
   }
 
   return valid;
@@ -168,7 +154,10 @@ document.querySelector('.close').addEventListener('click', function() {
   const form = document.querySelector('form[name="reserve"]');
   form.style.display = 'block';
   document.getElementById('confirmation-message').style.display = 'none';
+
   
+
+  form.reset(); // Réinitialiser le formulaire
 });
 
 document.querySelector('.closeMessage').addEventListener('click', function() {
@@ -176,5 +165,9 @@ document.querySelector('.closeMessage').addEventListener('click', function() {
   const form = document.querySelector('form[name="reserve"]');
   form.style.display = 'block';
   document.getElementById('confirmation-message').style.display = 'none';
+
  
+
+  form.reset(); // Réinitialiser le formulaire
+
 });
