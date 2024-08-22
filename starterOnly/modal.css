@@ -349,7 +349,7 @@ input {
 #confirmation-message {
   display: none;
   height: 650px;
-  padding: 0 20px;
+  padding: 0 30px;
   text-align: center;
   flex-flow: wrap;
   justify-content: space-evenly;
@@ -507,6 +507,10 @@ input {
   html, body {
     height: 100vh;
   }
+
+  .header-logo img {
+    height: 19px;
+  }
   .hero-section {
     min-height: 82vh;
     display: block;
@@ -553,10 +557,10 @@ input {
     display: none;
     position: fixed;
     z-index: 1;
-    top: calc(var(--topnav-height, 80px)); /* Ajuste en fonction de la hauteur de la topnav */
+    top: calc(var(--topnav-height, 60px)); /* Ajuste en fonction de la hauteur de la topnav */
     left: 0;
     width: 100%;
-    height: calc(100% - var(--topnav-height, 80px)); /* Hauteur totale moins la hauteur de la topnav */
+    height: calc(100% - var(--topnav-height, 60px)); /* Hauteur totale moins la hauteur de la topnav */
     background-color: rgba(26, 39, 156, 0.4);
     overflow-y: auto;
   }
@@ -584,4 +588,110 @@ input {
   to {
     opacity: 1;
   }
+}
+
+@media screen and (max-width: 540px) {
+
+  .topnav a {
+    display: none;
+  }
+
+  .topnav a.icon {
+    float: right;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Ajout CSS */
+  body>.topnav {
+    margin: 1.5%;
+  }
+
+  body>main {
+    margin: 0;
+  }
+
+  .header-logo>img {
+    width: clamp(8rem, 15vw, 20rem) !important;
+  }
+
+  main>.hero-section {
+    font-weight: 500;
+    min-height: 70vh;
+  }
+
+  .hero-section>.hero-content {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    min-width: 100%;
+  }
+
+
+  .hero-content>.hero-text {
+    font-size: clamp(13px, 1.5vw, 2.2rem);
+    font-weight: 400;
+    margin-top: 25px;
+  }
+
+  .hero-content>.hero-headline {
+    font-size: clamp(1.5rem, 8.5vw, 12.1rem);
+    margin-top: 20px;
+    font-weight: 900;
+  }
+
+  .hero-section>.btn-signup,
+  .btn-submit,
+  .btnValid {
+    font-size: 14px;
+    padding: 7px 45px !important
+  }
+
+  body .copyrights {
+    font-size: 10px;
+    margin-top: 15px;
+  }
+
+  body {
+    padding: 30px;
+    /* Ajout d'un padding au body */
+  }
+
+  main>.bground {
+    background-color: transparent;
+    position: fixed;
+  }
+
+  .bground>.content {
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    overflow: auto;
+  }
+
+  .bground .formData>label,
+  .text-label {
+    font-size: 11px !important;
+  }
+
+  .bground .formData {
+    margin-bottom: 5px;
+  }
+}
+
+@media screen and(min-width: 541px) and (max-width: 768px) {
+  .topnav a {
+    display: none;
+  }
+
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .topnav.responsive .icon {
+    font-size: 25px;
+  }
+
 }
