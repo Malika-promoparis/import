@@ -98,32 +98,32 @@ function validate(event) {
   }
 
   if (valid) {
-    // Masquer le formulaire et afficher le message de confirmation
-    const form = event.target;
-    const confirmationMessage = document.getElementById('confirmation-message');
-    form.style.display = 'none';
-    confirmationMessage.style.display = 'block';
-
-    // Effacer les valeurs du formulaire
-    form.reset();
+    if (valid) {
+      // Masquer le formulaire et afficher le message de confirmation
+      const confirmationMessage = document.getElementById('confirmation-message');
+      const form = event.target;
+      form.style.display = 'none';
+      confirmationMessage.style.display = 'flex';
+    
+      // Réinitialiser le formulaire après une soumission valide
+      form.reset();
   }
 
   return valid;
 }
+}
 
-// Fermer la modale et réinitialiser le formulaire et le message de confirmation
-document.querySelector('.close').addEventListener('click', function() {
+// Fermer la modale sans réinitialiser le formulaire
+function closeModal() {
+  // Cacher la modale
   document.querySelector('.bground').style.display = 'none';
-  const form = document.querySelector('form[name="reserve"]');
-  form.style.display = 'block';
-  document.getElementById('confirmation-message').style.display = 'none';
-  form.reset(); // Réinitialiser le formulaire
-});
 
-document.querySelector('.closeMessage').addEventListener('click', function() {
-  document.querySelector('.bground').style.display = 'none';
-  const form = document.querySelector('form[name="reserve"]');
-  form.style.display = 'block';
+  // Réinitialiser l'affichage du formulaire et du message de confirmation
   document.getElementById('confirmation-message').style.display = 'none';
-  form.reset(); // Réinitialiser le formulaire
-});
+  const form = document.querySelector('form[name="reserve"]');
+  form.style.display = 'block'; // Assurez-vous que le formulaire est affiché
+}
+
+// Assigner la fonction de fermeture à la croix de la modale
+document.querySelector('.close').addEventListener('click', closeModal);
+document.querySelector('.closeMessage').addEventListener('click', closeModal);
