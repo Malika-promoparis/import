@@ -1,5 +1,7 @@
-# Projet GameOn
-1. Forkez ce repo ;
-2. Il est conseillé d'utiliser VisualStudio Code et vous pouvez utiliser Docker, mais ce n'est pas obligatoire ;
-3. Il n'y a aucune dépendance ;
-4. Vous ne devez utiliser que du CSS personnalisé et du JavaScript pur, sans jQuery, Bootstrap ou autre librairie.
+# GameOn
+
+## Projet 3
+
+*Créez une landing page avec Javascript* : https://kevin-jerbic.github.io/GameOn-website-FR/starterOnly/
+
+![screenshot_projet](https://github.com/Kevin-Jerbic/GameOn-website-FR/assets/94851418/015730b9-3d3e-4236-aa81-149da9f1d6bf)
